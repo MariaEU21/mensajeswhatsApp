@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #25D366; /* Color de WhatsApp */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #128C7E; /* Color más oscuro de WhatsApp */
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Enviar Mensaje de WhatsApp</h2>
+    <form id="whatsappForm" onsubmit="sendMessage(event)">
+        <label for="number">Número de Teléfono:</label>
+        <input type="tel" id="number" placeholder="Ej: 5491123456789" required>
+
+        <label for="message">Mensaje:</label>
+        <textarea id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+        <button type="submit">Enviar Mensaje</button>
+    </form>
+
+    <script>
+        function sendMessage(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            const number = document.getElementById('number').value;
+            const message = document.getElementById('message').value;
+
+            // Codificar el mensaje para que sea seguro en la URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Abrir la URL de WhatsApp
+            const url = `https://wa.me/${number}?text=${encodedMessage}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
